@@ -2,9 +2,6 @@
 # include <bits/stdc++.h>
 using namespace std;
 
-#define INF 999
-
-
 // ----------------------------- HELPER VARIABLES ---------------------------
 
 // in graph theory, we need a way to represent nodes and the cost to travel between them
@@ -14,6 +11,10 @@ using namespace std;
 // the shortest path has been confirmed.
 // parent[100] will be used to reconstruct the actual path (from end node to start node)
 
+// V - Vertices (nodes)
+// 
+
+#define INF 999
 int V, src, cost[100][100];
 int dist[100];
 bool visited[100] = {0};
@@ -21,15 +22,25 @@ int parent[100];
 
 // ------------------------------- INITIALIZATION ------------------------------
 
-// before algo starts, we first must assume all nodes
+// before algo starts, we first must assume all nodes are infinitly far away, except the
+// starting point
+// we need to make the code set dist[i] = INF
+// the source node (src) is set to 0 because we have no distance to cover
 
 void init() {
     for (int i = 0; i < V; i++) {
         parent[i] = i;
         dist[i] = INF;
-    dist[src] = 0;
     }
+
+    dist[src] = 0;
 }
+
+// ------------------------------ FIND BEST CANDIDATE ------------------------------
+
+// Dijkstra is a greedy algo, meaning in every step, it looks for the unvisited node with
+// the smallest distance. It loops through all nodes, checks if visited[i] is false and 
+// will find the one with the minValue.
 
 int getNearest() {
     int minValue = INF;
@@ -43,6 +54,12 @@ int getNearest() {
     }
     return minnode;
 }
+
+// ----------------------------------- RELAXATION -----------------------------------
+
+// this is the process of updating the distance to a neighbour. 
+// if the path to a neighbour through the current node is shorter than the previously known
+// path, we should update it.
 
 void dijkstra() {
     for (int i = 0; i < V; i++) {
