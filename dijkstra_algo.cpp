@@ -75,21 +75,31 @@ void dijkstra() {
     }
 }
 
+// ----------------------- MAIN FUNCTION/ PROJECT MANAGER ---------------------------
 
 int main(void) {
+    // 1. INPUT PHASE
 
     // add the adjacency matrix for the information we will sort out.
-    cin >> V; // how many nodes are there?
 
-    cout << "Node\tDistance\tParent" << endl;
+    cin >> V; // Taking the map. How many nodes in the world?
+
     for (int i = 0; i < V; i++) {
-        cout << i << "\t" << dist[i] << "\t\t" << parent[i] << endl;
         for (int j = 0; j < V; j++) {
-            cin >> cost[i][j];
+            cin >> cost[i][j]; // what is the road cost from Node i to Node i?
         }
     }
 
     cin >> src; // type in the start node (src)
+
+    // 2. PROCESSING PHASE
     init();
     dijkstra();
+
+    // 3. OUTPUT PHASE 
+    cout << "Node\tDistance\tParent" << endl;
+    for (int i = 0; i < V; i++) {
+        cout << i << "\t" << dist[i] << "\t\t" << parent[i] << endl;
+    }
+
 }
