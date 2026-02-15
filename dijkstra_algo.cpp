@@ -75,14 +75,17 @@ void dijkstra() {
     }
 }
 
-// ----------------------- MAIN FUNCTION/ PROJECT MANAGER ---------------------------
+// -------------------------------- MAIN FUNCTION ------------------------------------
 
 int main(void) {
     // 1. INPUT PHASE
 
     // add the adjacency matrix for the information we will sort out.
 
+    cout << "Enter Number of Nodes: " << endl;
     cin >> V; // Taking the map. How many nodes in the world?
+
+    cout << "Enter the cost matrix (please use 999 for no path)" << endl;
 
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
@@ -90,6 +93,7 @@ int main(void) {
         }
     }
 
+    cout << "Please enter source node: " << endl;
     cin >> src; // type in the start node (src)
 
     // 2. PROCESSING PHASE
