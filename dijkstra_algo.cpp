@@ -85,10 +85,9 @@ int main(void) {
     cout << "Enter Number of Nodes: " << endl;
     cin >> V; // Taking the map. How many nodes in the world?
 
-    cout << "Enter the cost matrix (please use 999 for no path)" << endl;
-
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
+            cout << "Enter cost for [" << i << "][" << j << "]: ";
             cin >> cost[i][j]; // what is the road cost from Node i to Node i?
         }
     }
@@ -101,9 +100,22 @@ int main(void) {
     dijkstra();
 
     // 3. OUTPUT PHASE 
-    cout << "Node\tDistance\tParent" << endl;
-    for (int i = 0; i < V; i++) {
-        cout << i << "\t" << dist[i] << "\t\t" << parent[i] << endl;
-    }
+    // The Results Table
+    cout << "\n==========================================" << endl;
+    cout << "     SHORTEST PATH FROM NODE " << src << endl;
+    cout << "==========================================" << endl;
+    cout << "Target\t\tDistance\tParent" << endl;
+    cout << "------\t\t--------\t------" << endl;
 
+    for (int i = 0; i < V; i++) {
+        cout << "Node " << i << "\t\t";
+        if (dist[i] == INF) {
+            cout << "INF\t\tNone" << endl;
+        } else {
+            cout << dist[i] << "\t\tNode " << parent[i] << endl;
+        }
+    }
+    cout << "==========================================\n" << endl;
+
+    return 0;
 }
